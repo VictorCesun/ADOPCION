@@ -373,13 +373,23 @@ body {
     .container {
         flex-direction: column; /* Stack sidebar and main content vertically */
     }
-    .sidebar {
-        width: 100%; /* Sidebar takes full width */
-        height: auto; /* Auto height */
-        position: static; /* No longer sticky */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        padding-bottom: 20px;
-    }
+   @media (max-width: 768px) {
+            .sidebar {
+                height: 100vh;
+                overflow-y: auto;
+            }
+        
+
+        /* Prevent horizontal overflow on very small screens for elements that might try to be wider than the viewport */
+        .w-full-no-overflow {
+            width: 100%;
+            min-width: 0; /* Important for flex items to shrink */
+        }
+  .main-content {
+    margin-left: 0;
+  }
+}
+
     .sidebar .logo {
         text-align: center;
         margin-bottom: 20px;
@@ -852,3 +862,6 @@ input[type="password"] {
         grid-template-columns: 1fr; /* Single column on smaller screens */
     }
 }
+
+/*test*/
+ 

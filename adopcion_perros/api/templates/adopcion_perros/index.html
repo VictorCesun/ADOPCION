@@ -4,175 +4,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas! - Encuentra y da familia</title>
-    <link rel="stylesheet" href="/CSS/style.css">
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for specific elements not easily achievable with direct Tailwind or for visual consistency */
+      
+
+        /* Ensure sidebar content scrolls if it overflows vertically on desktop */
+        @media (min-width: 768px) {
+            .sidebar {
+                height: 100vh;
+                overflow-y: auto;
+            }
+        }
+
+        /* Prevent horizontal overflow on very small screens for elements that might try to be wider than the viewport */
+        .w-full-no-overflow {
+            width: 100%;
+            min-width: 0; /* Important for flex items to shrink */
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="logo">
-                <h1>Huellitas</h1>
-                <p>a un toque de tu mejor amigo</p>
+<body class="flex min-h-screen">
+    <div class="container flex flex-col md:flex-row w-full">
+        <!-- Sidebar -->
+        <aside class="sidebar w-full md:w-64 lg:w-72 bg-white p-6 shadow-md md:flex-shrink-0 flex flex-col items-center md:items-start">
+            <div class="logo text-center md:text-left mb-8">
+                <h1 class="text-3xl font-bold text-green-600">Huellitas</h1>
+                <p class="text-sm text-gray-500">a un toque de tu mejor amigo</p>
             </div>
-            <div class="search-bar-sidebar">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Buscador">
+            <div class="search-bar-sidebar flex items-center bg-gray-100 rounded-lg p-2 mb-6 w-full md:max-w-none">
+                <i class="fas fa-search text-gray-400 mr-2"></i>
+                <input type="text" placeholder="Buscador" class="bg-transparent outline-none flex-grow text-gray-700 w-full-no-overflow">
             </div>
-            <nav class="main-nav">
+            <nav class="main-nav w-full mb-6">
                 <ul>
-                    <li><a href="catalogo.html"><i class="fas fa-paw"></i> Ver todos los animales</a></li>
-                    <li><a href="hairmatch.html"><i class="fas fa-heart"></i> Hair match</a></li>
-                    <li><a href="colaboradores.html"><i class="fas fa-users"></i> Ver fundaciones/equipos</a></li>
-                    <li><a href="noticias.html"><i class="fas fa-newspaper"></i> Leer noticias</a></li>
+                    <li class="mb-3"><a href="../HTML/catalogo.html" class="flex items-center text-gray-700 hover:text-green-600 font-semibold text-lg transition duration-200"><i class="fas fa-paw mr-3"></i> Ver todos los animales</a></li>
+                    <li class="mb-3"><a href="../HTML/colaboradores.html" class="flex items-center text-gray-700 hover:text-green-600 font-semibold text-lg transition duration-200"><i class="fas fa-users mr-3"></i> Ver fundaciones/equipos</a></li>
+                    <li><a href="../HTML/noticias.html" class="flex items-center text-gray-700 hover:text-green-600 font-semibold text-lg transition duration-200"><i class="fas fa-newspaper mr-3"></i> Leer noticias</a></li>
                 </ul>
             </nav>
-            <div class="divider"></div>
-            <div class="auth-links">
+            <div class="divider border-t border-gray-200 w-full mb-6"></div>
+            <div class="auth-links w-full mb-6">
                 <ul>
-                    <li><a href="login.html"><i class="fas fa-user-circle"></i> Iniciar sesión / Regístrate</a></li>
+                    <li><a href="../HTML/login.html" class="flex items-center text-gray-700 hover:text-green-600 font-semibold text-lg transition duration-200"><i class="fas fa-user-circle mr-3"></i> Iniciar sesión / Regístrate</a></li>
                 </ul>
             </div>
-            <div class="sidebar-footer">
+            <div class="sidebar-footer w-full mt-auto">
                 <ul>
-                    <li><a href="#info"><i class="fas fa-info-circle"></i> Sobre Huachitos</a></li>
-                    <li><a href="#descarga"><i class="fas fa-download"></i> Descargar App</a></li>
-                    <li><a href="#comentarios"><i class="fas fa-comment-alt"></i> Dejar un comentario</a></li>
+                    <li class="mb-3"><a href="../HTML/index.html #info" class="flex items-center text-gray-600 hover:text-green-600 text-sm transition duration-200"><i class="fas fa-info-circle mr-3"></i> Sobre Huellitas</a></li>
+                    <li class="mb-3"><a href="../HTML/index.html #descarga" class="flex items-center text-gray-600 hover:text-green-600 text-sm transition duration-200"><i class="fas fa-download mr-3"></i> Descargar App</a></li>
+                    <li class="mb-3"><a href="../HTML/index.html #comentarios" class="flex items-center text-gray-600 hover:text-green-600 text-sm transition duration-200"><i class="fas fa-comment-alt mr-3"></i> Dejar un comentario</a></li>
                     <li>
-                        <a href="#">
-                            <i class="fas fa-moon"></i> Cambiar tema
-                            </a>
+                        <a href="#" class="flex items-center text-gray-600 hover:text-green-600 text-sm transition duration-200">
+                            <i class="fas fa-moon mr-3"></i> Cambiar tema
+                        </a>
                     </li>
                 </ul>
             </div>
         </aside>
 
-        <main class="main-content">
-            <header class="header">
-                <h2>¡BIENVENIDO! 👋</h2>
-                <p>¿Qué te gustaría hacer?</p>
+        <!-- Main Content -->
+        <main class="main-content flex-grow p-6 bg-gray-50 overflow-y-auto">
+            <header class="header mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">¡BIENVENIDO! 👋</h2>
+                <p class="text-gray-600">¿Qué te gustaría hacer?</p>
             </header>
 
-            <section class="animals-section">
-                <div class="section-header">
-                    <h3>Ver animales en adopción</h3>
-                    <a href="#" class="view-all">ver todos</a>
+            <!-- Animals in Adoption Section -->
+            <section class="animals-section mb-10">
+                <div class="section-header flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Ver animales en adopción</h3>
+                    <a href="#" class="view-all text-green-600 hover:underline font-semibold">ver todos</a>
                 </div>
-                <div class="animal-cards-container">
+                <div class="animal-cards-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <div class="animal-card">
-                        <img src="/media/cats/1000010386.png" alt="Hermione">
+                        <img src="../media/cats/1000010386.png" alt="Hermione">
                         <div class="card-overlay">
                             <span class="animal-type">GATO</span>
                             <div class="card-info">
-                                <h4>Hermione</h4>
-                                <p>La Reina, RM</p>
+                                <h4 class="text-xl font-semibold">Hermione</h4>
+                                <p class="text-sm">RescueMe, Tj</p>
                             </div>
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010304.png" alt="Conejo">
+                        <img src="../media/cats/1000010455.png" alt="kitty">
                         <div class="card-overlay">
-                            <span class="animal-type orange">Perro</span>
+                            <span class="animal-type orange">Gato</span>
                             <div class="card-info">
-                                <h4>Conejo</h4>
-                                <p>Las Condes, RM</p>
+                                <h4 class="text-xl font-semibold">Kitty</h4>
+                                <p class="text-sm">RescueMe, Tj</p>
                             </div>
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010388.png" alt="Kucho">
+                        <img src="../media/dogs/1000010298.png" alt="Kucho">
                         <div class="card-overlay">
                             <span class="animal-type red">PERRO</span>
                             <div class="card-info">
-                                <h4>Kucho</h4>
-                                <p>La Reina, RM</p>
+                                <h4 class="text-xl font-semibold">Kucho</h4>
+                                <p class="text-sm">Solitos en la Calle, Tj</p>
                             </div>
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010390.png" alt="Oma">
+                        <img src="../media/dogs/1000010300.png" alt="Oma">
                         <div class="card-overlay">
                             <span class="animal-type orange">PERRO</span>
                             <div class="card-info">
-                                <h4>Oma</h4>
-                                <p>La Pintana, RM</p>
+                                <h4 class="text-xl font-semibold">Oma</h4>
+                                <p class="text-sm">Voluntarios Tj, Tj</p>
                             </div>
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010300.png" alt="Miguel">
+                        <img src="https://placehold.co/600x400/DDD6FE/5B21B6?text=Miguel" alt="Miguel">
                         <div class="card-overlay">
                             <span class="animal-type purple">PERRO</span>
                             <div class="card-info">
-                                <h4>Miguel</h4>
-                                <p>La Reina, RM</p>
+                                <h4 class="text-xl font-semibold">Miguel</h4>
+                                <p class="text-sm">Solitos en la Calle, Tj</p>
                             </div>
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010454.png" alt="Nami">
+                        <img src="https://placehold.co/600x400/BFDBFE/1E40AF?text=Nami" alt="Nami">
                         <div class="card-overlay">
                             <span class="animal-type blue">PERRO</span>
                             <div class="card-info">
-                                <h4>Nami</h4>
-                                <p>La Reina, RM</p>
+                                <h4 class="text-xl font-semibold">Nami</h4>
+                                <p class="text-sm">La Reina, RM</p>
                             </div>
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010454.png" alt="Cariño">
+                        <img src="https://placehold.co/600x400/FECACA/991B1B?text=Cariño" alt="Cariño">
                         <div class="card-overlay">
                             <span class="animal-type red">GATO</span>
                             <div class="card-info">
-                                <h4>Cariño</h4>
-                                <p>La Reina, RM</p>
+                                <h4 class="text-xl font-semibold">Cariño</h4>
+                                <p class="text-sm">La Reina, RM</p>
                             </div>
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/cats/1000010455.png" alt="Ana">
+                        <img src="https://placehold.co/600x400/A7F3D0/065F46?text=Ana" alt="Ana">
                         <div class="card-overlay">
                             <span class="animal-type green">GATO</span>
                             <div class="card-info">
-                                <h4>Ana</h4>
-                                <p>La Antana, RM</p>
+                                <h4 class="text-xl font-semibold">Ana</h4>
+                                <p class="text-sm">La Antana, RM</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="animals-found-section">
-                <div class="section-header">
-                    <h3>Ver animales encontrados</h3>
-                    <a href="#" class="view-all">ver todos</a>
+            <!-- Animals Found Section -->
+            <section class="animals-found-section mb-10">
+                <div class="section-header flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Ver animales encontrados</h3>
+                    <a href="#" class="view-all text-green-600 hover:underline font-semibold">ver todos</a>
                 </div>
-                <div class="animal-cards-container small-cards">
+                <div class="animal-cards-container small-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <div class="animal-card small">
-                        <img src="/media/dogs/1000010466.png" alt="Flaco le dice...">
+                        <img src="https://placehold.co/600x400/BFDBFE/1E40AF?text=Flaco" alt="Flaco le dice...">
                         <div class="card-overlay-small">
-                            <span class="contact-info">+56944271821</span>
+                            <span class="contact-info bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-md absolute top-3 right-3">
+                                +56944271821
+                            </span>
                             <div class="card-info-small">
-                                <h4>Flaco.</h4>
-                                <ul>
-                                    <li><i class="fas fa-dog"></i> Perro</li>
-                                    <li><i class="fas fa-mars"></i> Macho</li>
-                                    <li><i class="fas fa-birthday-cake"></i> Adulto</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> La Granja</li>
+                                <h4 class="text-lg font-semibold mb-1">Flaco.</h4>
+                                <ul class="text-gray-200 text-xs space-y-0.5">
+                                    <li class="flex items-center"><i class="fas fa-dog mr-2"></i> Perro</li>
+                                    <li class="flex items-center"><i class="fas fa-mars mr-2"></i> Macho</li>
+                                    <li class="flex items-center"><i class="fas fa-birthday-cake mr-2"></i> Adulto</li>
+                                    <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> La Granja</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="animal-card small">
-                        <img src="/media/dogs/1000010304.png" alt="Santi">
+                        <img src="https://placehold.co/600x400/A7F3D0/065F46?text=Santi" alt="Santi">
                         <div class="card-overlay-small">
                             <div class="card-info-small">
-                                <h4>Santi</h4>
-                                <ul>
-                                    <li><i class="fas fa-dog"></i> Perro</li>
-                                    <li><i class="fas fa-mars"></i> Macho</li>
-                                    <li><i class="fas fa-birthday-cake"></i> 3 Año</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Santiago centro</li>
+                                <h4 class="text-lg font-semibold mb-1">Santi</h4>
+                                <ul class="text-gray-200 text-xs space-y-0.5">
+                                    <li class="flex items-center"><i class="fas fa-dog mr-2"></i> Perro</li>
+                                    <li class="flex items-center"><i class="fas fa-mars mr-2"></i> Macho</li>
+                                    <li class="flex items-center"><i class="fas fa-birthday-cake mr-2"></i> 3 Año</li>
+                                    <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Santiago centro</li>
                                 </ul>
                             </div>
                         </div>
@@ -180,47 +206,159 @@
                 </div>
             </section>
 
-            <section>
-            <div class="submit-animal-section">
-                <h3>Sube un animal</h3>
+            <!-- New: Catalog by Organizations Section -->
+            <section class="organizations-catalog-section mb-10">
+                <div class="section-header flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Catálogo por Organizaciones</h3>
+                    <a href="#" class="view-all text-green-600 hover:underline font-semibold">ver todas</a>
+                </div>
+
+                <!-- Organization 1: Fundación Patitas Felices -->
+                <div class="mb-8 p-6 bg-white rounded-lg shadow-md">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-building mr-3 text-green-600"></i> Fundación Patitas Felices</h4>
+                    <div class="animal-cards-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="animal-card">
+                            <img src="https://placehold.co/600x400/A7F3D0/065F46?text=Luna" alt="Luna">
+                            <div class="card-overlay">
+                                <span class="animal-type">GATO</span>
+                                <div class="card-info">
+                                    <h4 class="text-xl font-semibold">Luna</h4>
+                                    <p class="text-sm">Providencia, RM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <img src="https://placehold.co/600x400/FDBA74/9A3412?text=Max" alt="Max">
+                            <div class="card-overlay">
+                                <span class="animal-type orange">PERRO</span>
+                                <div class="card-info">
+                                    <h4 class="text-xl font-semibold">Max</h4>
+                                    <p class="text-sm">Ñuñoa, RM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <img src="https://placehold.co/600x400/FECACA/991B1B?text=Mia" alt="Mia">
+                            <div class="card-overlay">
+                                <span class="animal-type red">GATO</span>
+                                <div class="card-info">
+                                    <h4 class="text-xl font-semibold">Mia</h4>
+                                    <p class="text-sm">Vitacura, RM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization 2: Rescate Canino Esperanza -->
+                <div class="mb-8 p-6 bg-white rounded-lg shadow-md">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-shield-dog mr-3 text-blue-600"></i> Rescate Canino Esperanza</h4>
+                    <div class="animal-cards-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="animal-card">
+                            <img src="https://placehold.co/600x400/BFDBFE/1E40AF?text=Rocky" alt="Rocky">
+                            <div class="card-overlay">
+                                <span class="animal-type blue">PERRO</span>
+                                <div class="card-info">
+                                    <h4 class="text-xl font-semibold">Rocky</h4>
+                                    <p class="text-sm">La Florida, RM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <img src="https://placehold.co/600x400/DDD6FE/5B21B6?text=Bella" alt="Bella">
+                            <div class="card-overlay">
+                                <span class="animal-type purple">PERRO</span>
+                                <div class="card-info">
+                                    <h4 class="text-xl font-semibold">Bella</h4>
+                                    <p class="text-sm">Macul, RM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization 3: Adopta un Amigo -->
+                <div class="mb-8 p-6 bg-white rounded-lg shadow-md">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-hands-holding-child mr-3 text-red-600"></i> Adopta un Amigo</h4>
+                    <div class="animal-cards-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="animal-card">
+                            <img src="https://placehold.co/600x400/FDBA74/9A3412?text=Coco" alt="Coco">
+                            <div class="card-overlay">
+                                <span class="animal-type orange">GATO</span>
+                                <div class="card-info">
+                                    <h4 class="text-xl font-semibold">Coco</h4>
+                                    <p class="text-sm">San Bernardo, RM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <img src="https://placehold.co/600x400/A7F3D0/065F46?text=Daisy" alt="Daisy">
+                            <div class="card-overlay">
+                                <span class="animal-type green">PERRO</span>
+                                <div class="card-info">
+                                    <h4 class="text-xl font-semibold">Daisy</h4>
+                                    <p class="text-sm">Puente Alto, RM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <img src="https://placehold.co/600x400/BFDBFE/1E40AF?text=Simba" alt="Simba">
+                            <div class="card-overlay">
+                                <span class="animal-type blue">GATO</span>
+                                <div class="card-info">
+                                    <h4 class="text-xl font-semibold">Simba</h4>
+                                    <p class="text-sm">Maipú, RM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
+
+            <!-- Submit Animal Section -->
+            <section class="submit-animal-section mb-10 p-6 bg-white rounded-lg shadow-md text-center">
+                <h3 class="text-2xl font-bold text-gray-800">Sube un animal</h3>
+                <p class="text-gray-600 mt-2">¿Encontraste un animal o necesitas dar en adopción? ¡Ayúdanos a encontrarle un hogar!</p>
+                <button class="mt-4 px-6 py-3 bg-green-600 text-white font-bold rounded-full shadow-lg hover:bg-green-700 transition duration-300">
+                    Subir Animal
+                </button>
+            </section>
+
             <br><br>
-        <!-- Sección Sobre -->
-<section class="about-section" id="info">
-  <h3>Sobre</h3>
-  <p>
-¡Bienvenido a Huellitas!
-<br><br>
-En Huellitas, creemos que cada perro y gato merece un hogar lleno de amor. Nuestra misión es ser el puente entre esos corazones peludos que esperan en refugios y veterinarias de Tijuana y las familias que desean abrir sus puertas a un nuevo compañero.
-<br><br>
-Aquí encontrarás una base de datos completa y actualizada con información de todos los perros y gatos disponibles para adopción en la región. Desde el pequeño cachorro juguetón hasta el sabio gato adulto, cada perfil incluye detalles esenciales para ayudarte a encontrar a tu pareja perfecta. Nuestro objetivo es simplificar el proceso de búsqueda y adopción, haciendo que sea más fácil que nunca darle una segunda oportunidad a estos animales necesitados. ¡Explora, enamórate y anímate a cambiar una vida!
+            <!-- About Section -->
+            <section class="about-section mb-10 p-6 bg-white rounded-lg shadow-md" id="info">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Sobre</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    ¡Bienvenido a Huellitas!
+                    <br><br>
+                    En Huellitas, creemos que cada perro y gato merece un hogar lleno de amor. Nuestra misión es ser el puente entre esos corazones peludos que esperan en refugios y veterinarias de Tijuana y las familias que desean abrir sus puertas a un nuevo compañero.
+                    <br><br>
+                    Aquí encontrarás una base de datos completa y actualizada con información de todos los perros y gatos disponibles para adopción en la región. Desde el pequeño cachorro juguetón hasta el sabio gato adulto, cada perfil incluye detalles esenciales para ayudarte a encontrar a tu pareja perfecta. Nuestro objetivo es simplificar el proceso de búsqueda y adopción, haciendo que sea más fácil que nunca darle una segunda oportunidad a estos animales necesitados. ¡Explora, enamórate y anímate a cambiar una vida!
+                </p>
+            </section>
 
-  </p>
-</section>
+            <!-- Download Section -->
+            <section class="download-section mb-10 p-6 bg-white rounded-lg shadow-md" id="descarga">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Descargar la Aplicación</h3>
+                <p class="text-gray-700 leading-relaxed mb-6">Accede rápidamente desde tu dispositivo móvil. Descarga la app desde tu tienda favorita:</p>
+                <div class="store-buttons flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="https://play.google.com/store" target="_blank" class="store-button w-48 transition-transform duration-200 hover:scale-105">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Disponible en Google Play" class="w-full">
+                    </a>
+                    <a href="https://www.apple.com/mx/app-store/" target="_blank" class="store-button w-48 transition-transform duration-200 hover:scale-105">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Disponible en App Store" class="w-full">
+                    </a>
+                </div>
+            </section>
 
-<!-- Sección Descargar -->
-<section class="download-section" id="descarga">
-  <h3>Descargar la Aplicación</h3>
-  <p>Accede rápidamente desde tu dispositivo móvil. Descarga la app desde tu tienda favorita:</p>
-  <div class="store-buttons">
-    <a href="https://play.google.com/store" target="_blank" class="store-button playstore">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Disponible en Google Play">
-    </a>
-    <a href="https://www.apple.com/mx/app-store/" target="_blank" class="store-button appstore">
-      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Disponible en App Store">
-    </a>
-  </div>
-</section>
-
-
-<!-- Sección Comentario -->
-<section class="comment-section" id="comentarios">
-  <h3>Deja un comentario</h3>
-  <textarea placeholder="Escribe tu opinión o sugerencia..."></textarea>
-  <button>Enviar</button>
-</section>
-
+            <!-- Comment Section -->
+            <section class="comment-section mb-10 p-6 bg-white rounded-lg shadow-md" id="comentarios">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Deja un comentario</h3>
+                <textarea class="w-full p-3 border border-gray-300 rounded-lg mb-4 h-32 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200" placeholder="Escribe tu opinión o sugerencia..."></textarea>
+                <button class="px-6 py-3 bg-green-600 text-white font-bold rounded-full shadow-lg hover:bg-green-700 transition duration-300">
+                    Enviar
+                </button>
+            </section>
         </main>
     </div>
 </body>
