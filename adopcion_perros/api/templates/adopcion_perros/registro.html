@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Huellitas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/CSS/registro.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🐾 Huellitas</h1>
+    <div class="form-box">
+      <h2>Registro</h2>
+      <form id="registerForm">
+        <input type="text" name="name" placeholder="Nombre completo" required />
+        <input type="email" name="email" placeholder="Correo electrónico" required />
+        <input type="password" name="password" placeholder="Contraseña" required />
+        <button type="submit">Crear cuenta</button>
+        <p class="message" id="messageResult"></p>
+        <p class="login-link">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+      </form>
+    </div>
+  </div>
+  <script>
+    const form = document.getElementById('registerForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        password: form.password.value
+      };
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      document.getElementById('messageResult').textContent = result.message;
+    });
+  </script>
+</body>
+</html>
