@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
+    'django_extensions',
+    'rest_framework.authtoken',
+    'adopcion_perros',
 ]
 
 MIDDLEWARE = [
@@ -117,7 +120,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -130,6 +136,33 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',  # cambia según seguridad
-    ]
+        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',  # cambia según seguridad
+    ],
+    'EXCEPTION_HANDLER': 'api.utils.custom_exception_handler',
+
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'archivo': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/api_seguridad.log',
+        },
+    },
+    'loggers': {
+        'django.security': {
+            'handlers': ['archivo'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'api': {
+            'handlers': ['archivo'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
 }

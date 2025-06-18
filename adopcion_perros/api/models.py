@@ -29,8 +29,8 @@ class Perro(models.Model):
     def __str__(self):
         return self.nombre
 
-
 class SolicitudAdopcion(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # 👈 Añadido
     nombre_completo = models.CharField(max_length=100)
     email = models.EmailField()
     telefono = models.CharField(max_length=20)
@@ -46,8 +46,8 @@ class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     perro = models.ForeignKey(Perro, on_delete=models.CASCADE)
 
-    class Meta:
-        unique_together = ('usuario', 'perro')  # evita duplicados
+class Meta:
+    unique_together = ('usuario', 'perro')  # evita duplicados
 
     def __str__(self):
         return f"{self.usuario.username} ♥ {self.perro.nombre}"

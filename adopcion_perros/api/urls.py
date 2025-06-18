@@ -7,7 +7,11 @@ router.register(r'perros', PerroViewSet, basename='perros')
 router.register(r'centros', CentroAdopcionViewSet, basename='centros')
 router.register(r'adopciones', SolicitudAdopcionViewSet, basename='adopciones')
 router.register(r'favoritos', FavoritoViewSet, basename='favoritos')
+router.register(r'solicitudes', SolicitudAdopcionViewSet, basename='solicitudes')
+
+urlpatterns = router.urls
 
 urlpatterns = [
     path('', include(router.urls)),
 ]
+
