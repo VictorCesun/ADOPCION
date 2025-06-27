@@ -30,7 +30,7 @@ class Perro(models.Model):
         return self.nombre
 
 class SolicitudAdopcion(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # 👈 Añadido
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True) # 👈 Añadido
     nombre_completo = models.CharField(max_length=100)
     email = models.EmailField()
     telefono = models.CharField(max_length=20)

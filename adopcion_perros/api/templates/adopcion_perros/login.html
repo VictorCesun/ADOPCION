@@ -1,25 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iniciar sesión / Registro - Huellitas</title>
+  <title>Iniciar sesión - Huellitas</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/CSS/estilo-login.css" />
+  <link rel="stylesheet" href="{% static 'CSS/estilo-login.css' %}" />
 </head>
 <body>
   <div class="container">
     <h1>🐾 Huellitas</h1>
     <div class="form-box">
       <h2>¡Bienvenido!</h2>
-      <p>Inicia sesión o regístrate para continuar</p>
-      
-      <form action="#" method="POST">
-        <input type="email" placeholder="Correo electrónico" required />
-        <input type="password" placeholder="Contraseña" required />
+      <p>Inicia sesión para continuar</p>
+
+      <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Correo o nombre de usuario" required />
+        <input type="password" name="password" placeholder="Contraseña" required />
         <button type="submit">Iniciar sesión</button>
-        <p class="registro">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
       </form>
+
+      {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+      {% endfor %}
+
+      <p class="registro">¿No tienes cuenta? <a href="{% url 'registro' %}">Regístrate</a></p>
     </div>
   </div>
 </body>

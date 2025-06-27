@@ -21,6 +21,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    path('api-token-auth/', obtain_auth_token),  # ← esto habilita el login por token
+    path('api/', include('api.urls')),                  # API de la app "api"
+    path('api-token-auth/', obtain_auth_token),         # Autenticación por token
+    path('', include('api.urls')),                  # ← Añade esta línea
 ]
