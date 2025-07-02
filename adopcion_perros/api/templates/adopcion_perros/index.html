@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas! - Encuentra y da familia</title>
-    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="{% static 'adopcion_perros/css/style.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -13,6 +14,7 @@
         <aside class="sidebar">
             <div class="logo">
                 <h1>Huellitas</h1>
+                <img src={% static "adopcion_perros/img/Logo.png"%} alt="Logo de Huellitas">
                 <p>a un toque de tu mejor amigo</p>
             </div>
             <div class="search-bar-sidebar">
@@ -60,7 +62,7 @@
                 </div>
                 <div class="animal-cards-container">
                     <div class="animal-card">
-                        <img src="/media/cats/1000010386.png" alt="Hermione">
+                        <img src={% static "adopcion_perros/img/cats/1000010386.png"%}  alt="Hermione">
                         <div class="card-overlay">
                             <span class="animal-type">GATO</span>
                             <div class="card-info">
@@ -70,7 +72,7 @@
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010304.png" alt="Conejo">
+                        <img src={% static "adopcion_perros/img/dogs/1000010304.png"%} alt="Conejo">
                         <div class="card-overlay">
                             <span class="animal-type orange">Perro</span>
                             <div class="card-info">
@@ -80,7 +82,7 @@
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010388.png" alt="Kucho">
+                        <img src={% static "adopcion_perros/img/dogs/1000010388.png"%} alt="Kucho">
                         <div class="card-overlay">
                             <span class="animal-type red">PERRO</span>
                             <div class="card-info">
@@ -90,7 +92,7 @@
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010390.png" alt="Oma">
+                        <img src={% static "adopcion_perros/img/dogs/1000010390.png"%} alt="Oma">
                         <div class="card-overlay">
                             <span class="animal-type orange">PERRO</span>
                             <div class="card-info">
@@ -100,7 +102,7 @@
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010300.png" alt="Miguel">
+                        <img src={% static "adopcion_perros/img/dogs/1000010300.png"%} alt="Miguel">
                         <div class="card-overlay">
                             <span class="animal-type purple">PERRO</span>
                             <div class="card-info">
@@ -110,7 +112,7 @@
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010454.png" alt="Nami">
+                        <img src={% static "adopcion_perros/img/dogs/1000010454.png"%} alt="Nami">
                         <div class="card-overlay">
                             <span class="animal-type blue">PERRO</span>
                             <div class="card-info">
@@ -120,7 +122,7 @@
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/dogs/1000010454.png" alt="Cariño">
+                        <img src={% static "adopcion_perros/img/dogs/1000010454.png"%} alt="Cariño">
                         <div class="card-overlay">
                             <span class="animal-type red">GATO</span>
                             <div class="card-info">
@@ -130,7 +132,7 @@
                         </div>
                     </div>
                     <div class="animal-card">
-                        <img src="/media/cats/1000010455.png" alt="Ana">
+                        <img src={% static "adopcion_perros/img/cats/1000010455.png"%} alt="Ana">
                         <div class="card-overlay">
                             <span class="animal-type green">GATO</span>
                             <div class="card-info">
@@ -149,7 +151,7 @@
                 </div>
                 <div class="animal-cards-container small-cards">
                     <div class="animal-card small">
-                        <img src="/media/dogs/1000010466.png" alt="Flaco le dice...">
+                        <img src={% static "adopcion_perros/img/dogs/1000010466.png"%} alt="Flaco le dice...">
                         <div class="card-overlay-small">
                             <span class="contact-info">+56944271821</span>
                             <div class="card-info-small">
@@ -164,7 +166,7 @@
                         </div>
                     </div>
                     <div class="animal-card small">
-                        <img src="/media/dogs/1000010304.png" alt="Santi">
+                        <img src={% static "adopcion_perros/img/dogs/1000010304.png"%} alt="Santi">
                         <div class="card-overlay-small">
                             <div class="card-info-small">
                                 <h4>Santi</h4>
