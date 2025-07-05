@@ -31,7 +31,10 @@ INSTALLED_APPS = [
     'django_extensions',
     'api',
     'adopcion_perros',
+    'usuarios',
 ]
+
+AUTH_USER_MODEL = 'usuarios.Usuario'
 
 # Middlewares
 MIDDLEWARE = [
