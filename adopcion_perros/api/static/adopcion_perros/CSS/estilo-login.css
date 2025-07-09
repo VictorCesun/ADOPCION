@@ -41,6 +41,7 @@ h1 {
   margin-bottom: 20px;
 }
 
+input[type="text"],
 input[type="email"],
 input[type="password"] {
   width: 100%;
@@ -49,7 +50,9 @@ input[type="password"] {
   border: none;
   border-radius: 10px;
   font-size: 1rem;
+  box-sizing: border-box;
 }
+
 
 button {
   width: 100%;
@@ -76,4 +79,12 @@ button:hover {
   color: #bb86fc;
   text-decoration: none;
   font-weight: 600;
+}
+
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #bb86fc;
+  background-color: #fafafa;
+  color: #333;
 }

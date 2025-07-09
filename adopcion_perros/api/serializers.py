@@ -17,14 +17,22 @@ class SolicitudAdopcionSerializer(serializers.ModelSerializer):
     class Meta:
         model = SolicitudAdopcion
         fields = '__all__'
-        read_only_fields = ['usuario', 'estado', 'fecha_solicitud']
 
     def validate_telefono(self, value):
-        if not value.isdigit() or len(value) < 10:
-            raise serializers.ValidationError("Número de teléfono inválido.")
+        if not value.isdigit() or len(value) != 10:
+            raise serializers.ValidationError("El teléfono debe tener 10 dígitos.")
+        return value
+
+    def validate_mensaje(self, value):
+        if len(value) < 10:
+            raise serializers.ValidationError("El mensaje debe tener al menos 10 caracteres.")
         return value
 
 class FavoritoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorito
         fields = '__all__'
+        
+        
+        
+

@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.models import User
+#Inicio de sesion requerido
+from django.contrib.auth.decorators import login_required
+from .models import Perro
 
 from rest_framework import viewsets, permissions, status
 from .models import Perro, SolicitudAdopcion, CentroAdopcion, Favorito
@@ -16,7 +19,10 @@ logger = logging.getLogger('api')
 # -----------------------------
 # ✅ Registro de usuario
 # -----------------------------
+from django.contrib.auth import get_user_model
+
 def registro_view(request):
+    User = get_user_model()  # 👈 usa tu modelo personalizado
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -30,6 +36,7 @@ def registro_view(request):
             messages.success(request, 'Usuario registrado exitosamente')
             return redirect('login')
     return render(request, 'adopcion_perros/registro.html')
+
 
 # -----------------------------
 # ✅ Inicio de sesión
@@ -111,3 +118,21 @@ class FavoritoViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(usuario=self.request.user)
+
+#Formulario
+@login_required
+def adopcion_formulario_view(request):
+    perros = Perro.objects.all()
+    return render(request, 'adopcion_perros/adopcion_form.html', {'perros': perros})
+
+#Adopcion de la mascota
+
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from .models import Perro
+
+@login_required(login_url='login')  # 👈 esto es lo nuevo
+def adopcion_formulario_view(request):
+    perros = Perro.objects.all()
+    return render(request, 'adopcion_perros/adopcion_form.html', {'perros': perros})
+

@@ -852,3 +852,111 @@ input[type="password"] {
         grid-template-columns: 1fr; /* Single column on smaller screens */
     }
 }
+
+/* Logo dentro del sidebar */
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: #d8bcf3;
+    margin: 5px 0;
+}
+
+.logo p {
+    font-size: 13px;
+    color: #bbb;
+    margin: 0;
+}
+
+
+
+
+/* Esto es del index de la barra lateral */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #e7d4f8;
+    overflow-x: hidden;
+}
+
+
+
+/* === Estilos del Formulario de Adopción === */
+.adoption-form {
+  background-color: #2e1a41; /* Fondo oscuro a juego con el sidebar */
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  max-width: 600px;
+  margin: 0 auto;
+  color: #f2e9f7;
+}
+
+.adoption-form label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #d8bcf3;
+}
+
+.adoption-form input,
+.adoption-form select,
+.adoption-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: #402b5a;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.adoption-form input:focus,
+.adoption-form select:focus,
+.adoption-form textarea:focus {
+  box-shadow: 0 0 0 3px #d8bcf3aa;
+}
+
+.adoption-form textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-submit {
+  margin-top: 30px;
+  padding: 14px 20px;
+  background-color: #d98ef7;
+  color: #2e1a41;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #be91e4;
+  transform: translateY(-2px);
+}
+
+.success-message {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #27f58f;
+  text-align: center;
+}

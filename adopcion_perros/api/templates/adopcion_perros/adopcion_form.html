@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Adopción</title>
+  <link rel="stylesheet" href="{% static 'adopcion_perros/CSS/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div class="container">
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="{% static 'adopcion_perros/img/Logo.png' %}" alt="Logo Huellitas" class="logo-img">
+      <h1>Huellitas</h1>
+      <p>a un toque de tu mejor amigo</p>
+    </div>
+
+    <div class="search-bar-sidebar">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Buscador">
+    </div>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a href="catalogo.html"><i class="fas fa-paw"></i> Ver todos los animales</a></li>
+        <li><a href="hairmatch.html"><i class="fas fa-heart"></i> Hair match</a></li>
+        <li><a href="colaboradores.html"><i class="fas fa-users"></i> Ver fundaciones/equipos</a></li>
+        <li><a href="{% url 'noticias' %}"><i class="fas fa-newspaper"></i> Leer noticias</a></li>
+        <li><a href="{% url 'adoptar' %}"><i class="fas fa-dog"></i> Adoptar una mascota</a></li>
+      </ul>
+    </nav>
+
+    <div class="divider"></div>
+
+    <div class="auth-links">
+      <ul>
+        <li><a href="{% url 'login' %}"><i class="fas fa-user-circle"></i> Iniciar sesión / Regístrate</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <ul>
+        <li><a href="#info"><i class="fas fa-info-circle"></i> Sobre Huachitos</a></li>
+        <li><a href="#descarga"><i class="fas fa-download"></i> Descargar App</a></li>
+        <li><a href="#comentarios"><i class="fas fa-comment-alt"></i> Dejar un comentario</a></li>
+        <li><a href="#"><i class="fas fa-moon"></i> Cambiar tema</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <h2 class="form-title">Formulario de Adopción</h2>
+
+    <form id="adopcionForm" class="adoption-form">
+      {% csrf_token %}
+
+      <label for="nombre_completo">Nombre completo:</label>
+      <input type="text" name="nombre_completo" id="nombre_completo" required minlength="5" maxlength="100">
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" name="telefono" id="telefono" required pattern="[0-9]{10}" title="Debe tener 10 dígitos numéricos">
+
+      <label for="id_perro">Mascota a adoptar:</label>
+      <select name="id_perro" id="id_perro" required>
+        <option value="">Selecciona una mascota</option>
+        {% for perro in perros %}
+          <option value="{{ perro.id }}">{{ perro.nombre }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="mensaje">Mensaje:</label>
+      <textarea name="mensaje" id="mensaje" required minlength="10" maxlength="500"></textarea>
+
+      <button type="submit" class="btn-submit">Enviar solicitud</button>
+    </form>
+
+    <div id="mensajeExito" class="success-message" style="display:none;">
+      ¡Solicitud enviada correctamente!
+    </div>
+  </main>
+</div>
+
+<script>
+document.getElementById("adopcionForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = this;
+
+  // Validaciones básicas JS (por si el navegador las salta)
+  const nombre = form.nombre_completo.value.trim();
+  const email = form.email.value.trim();
+  const telefono = form.telefono.value.trim();
+  const mensaje = form.mensaje.value.trim();
+  const perro = form.id_perro.value;
+
+  if (nombre.length < 5) {
+    alert("El nombre debe tener al menos 5 caracteres.");
+    return;
+  }
+
+  if (!email.includes("@")) {
+    alert("Ingresa un correo válido.");
+    return;
+  }
+
+  if (!/^\d{10}$/.test(telefono)) {
+    alert("El teléfono debe tener 10 dígitos numéricos.");
+    return;
+  }
+
+  if (!perro) {
+    alert("Debes seleccionar una mascota.");
+    return;
+  }
+
+  if (mensaje.length < 10) {
+    alert("El mensaje debe tener al menos 10 caracteres.");
+    return;
+  }
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+  const response = await fetch("{% url 'api_adopciones' %}", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (response.ok) {
+    alert("¡Solicitud enviada correctamente!");
+    form.reset();
+  } else {
+    const error = await response.json();
+    alert("Error al enviar la solicitud: " + JSON.stringify(error));
+  }
+});
+</script>
+
+</body>
+</html>

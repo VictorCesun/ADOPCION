@@ -14,9 +14,11 @@
     <div class="container">
         <aside class="sidebar">
             <div class="logo">
-                <h1>Huellitas</h1>
-                <p>a un toque de tu mejor amigo</p>
-            </div>
+            <img src="{% static 'adopcion_perros/img/Logo.png' %}" alt="Logo Huellitas" class="logo-img">
+            <h1>Huellitas</h1>
+        <p>a un toque de tu mejor amigo</p>
+        </div>
+
             <div class="search-bar-sidebar">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Buscador">
@@ -26,20 +28,22 @@
                     <li><a href="catalogo.html"><i class="fas fa-paw"></i> Ver todos los animales</a></li>
                     <li><a href="hairmatch.html"><i class="fas fa-heart"></i> Hair match</a></li>
                     <li><a href="colaboradores.html"><i class="fas fa-users"></i> Ver fundaciones/equipos</a></li>
-                    <li><a href="noticias.html"><i class="fas fa-newspaper"></i> Leer noticias</a></li>
+                    <li><a href="{% url 'noticias' %}"><i class="fas fa-newspaper"></i> Leer noticias</a></li>
+                    <li><a href="{% url 'adoptar' %}"><i class="fas fa-dog"></i> Adoptar una mascota</a>
+</li>
                 </ul>
             </nav>
             <div class="divider"></div>
             <div class="auth-links">
                 <ul>
-                    <li><a href="login.html"><i class="fas fa-user-circle"></i> Iniciar sesión / Regístrate</a></li>
+                    <li><a href="{% url 'login' %}"><i class="fas fa-user-circle"></i> Iniciar sesión / Regístrate</a></li>
                 </ul>
             </div>
             <div class="sidebar-footer">
                 <ul>
-                    <li><a href="index.html #info"><i class="fas fa-info-circle"></i> Sobre Huachitos</a></li>
-                    <li><a href="index.html #descarga"><i class="fas fa-download"></i> Descargar App</a></li>
-                    <li><a href="index.html #comentarios"><i class="fas fa-comment-alt"></i> Dejar un comentario</a></li>
+                    <li><a href="#info"><i class="fas fa-info-circle"></i> Sobre Huachitos</a></li>
+                    <li><a href="#descarga"><i class="fas fa-download"></i> Descargar App</a></li>
+                    <li><a href="#comentarios"><i class="fas fa-comment-alt"></i> Dejar un comentario</a></li>
                     <li>
                         <a href="#">
                             <i class="fas fa-moon"></i> Cambiar tema

@@ -1,5 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from .views import adopcion_formulario_view, SolicitudAdopcionView
 from . import views
 from .views import (
     PerroViewSet,
@@ -30,5 +31,14 @@ urlpatterns = [
     path('noticias/', views.noticias_view, name='noticias'),
     path('news/', views.news_view, name='news'),
     path('colaborador/', views.colaborador_view, name='colaborador'),
+    path('adoptar/', adopcion_formulario_view, name='adoptar'),
+    path('api/adopciones/', SolicitudAdopcionView.as_view(), name='api_adopciones'),
+    path('login/', login_view, name='login'),
+
     # Puedes agregar más vistas aquí
 ]
+
+
+
+
+urlpatterns += router.urls
