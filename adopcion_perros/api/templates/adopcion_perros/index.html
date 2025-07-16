@@ -34,10 +34,20 @@
             </nav>
             <div class="divider"></div>
             <div class="auth-links">
-                <ul>
-                    <li><a href="{% url 'login' %}"><i class="fas fa-user-circle"></i> Iniciar sesión / Regístrate</a></li>
-                </ul>
-            </div>
+    <ul>
+        {% if user.is_authenticated %}
+            <li>
+                <span><i class="fas fa-user"></i> Hola, {{ user.username|title }}</span>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+            </li>
+        {% else %}
+            <li><a href="{% url 'login' %}"><i class="fas fa-user-circle"></i> Iniciar sesión / Regístrate</a></li>
+        {% endif %}
+    </ul>
+</div>
+
             <div class="sidebar-footer">
                 <ul>
                     <li><a href="#info"><i class="fas fa-info-circle"></i> Sobre Huachitos</a></li>

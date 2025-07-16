@@ -1,13 +1,15 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import adopcion_formulario_view, SolicitudAdopcionView
 from . import views
 from .views import (
+    adopcion_formulario_view,
+    SolicitudAdopcionView,
     PerroViewSet,
     CentroAdopcionViewSet,
     SolicitudAdopcionViewSet,
     FavoritoViewSet,
     login_view,
+    logout_view,  # 👈 Importación corregida
     index_view,
     registro_view,
     noticias_view,
@@ -25,20 +27,16 @@ router.register(r'solicitudes', SolicitudAdopcionViewSet, basename='solicitudes'
 
 # HTML + API
 urlpatterns = [
-    path('', views.index_view, name='index'),
-    path('login/', views.login_view, name='login'),
-    path('registro/', views.registro_view, name='registro'),
-    path('noticias/', views.noticias_view, name='noticias'),
-    path('news/', views.news_view, name='news'),
-    path('colaborador/', views.colaborador_view, name='colaborador'),
+    path('', index_view, name='index'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),  # 👈 Ruta de cerrar sesión
+    path('registro/', registro_view, name='registro'),
+    path('noticias/', noticias_view, name='noticias'),
+    path('news/', news_view, name='news'),
+    path('colaborador/', colaborador_view, name='colaborador'),
     path('adoptar/', adopcion_formulario_view, name='adoptar'),
     path('api/adopciones/', SolicitudAdopcionView.as_view(), name='api_adopciones'),
-    path('login/', login_view, name='login'),
-
-    # Puedes agregar más vistas aquí
 ]
 
-
-
-
+# Añade las rutas de los ViewSets del router
 urlpatterns += router.urls

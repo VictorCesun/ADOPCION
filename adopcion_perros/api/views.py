@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 #Inicio de sesion requerido
 from django.contrib.auth.decorators import login_required
 from .models import Perro
+#CERRAR SESION
+from django.contrib.auth import logout
 
 from rest_framework import viewsets, permissions, status
 from .models import Perro, SolicitudAdopcion, CentroAdopcion, Favorito
@@ -136,3 +138,11 @@ def adopcion_formulario_view(request):
     perros = Perro.objects.all()
     return render(request, 'adopcion_perros/adopcion_form.html', {'perros': perros})
 
+
+#Cerrar sesion
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')

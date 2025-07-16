@@ -1,88 +1,42 @@
+{% extends 'adopcion_perros/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Formulario de Adopción</title>
-  <link rel="stylesheet" href="{% static 'adopcion_perros/CSS/style.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-<div class="container">
-  <aside class="sidebar">
-    <div class="logo">
-      <img src="{% static 'adopcion_perros/img/Logo.png' %}" alt="Logo Huellitas" class="logo-img">
-      <h1>Huellitas</h1>
-      <p>a un toque de tu mejor amigo</p>
-    </div>
 
-    <div class="search-bar-sidebar">
-      <i class="fas fa-search"></i>
-      <input type="text" placeholder="Buscador">
-    </div>
+{% block title %}Formulario de Adopción - Huellitas{% endblock %}
 
-    <nav class="main-nav">
-      <ul>
-        <li><a href="catalogo.html"><i class="fas fa-paw"></i> Ver todos los animales</a></li>
-        <li><a href="hairmatch.html"><i class="fas fa-heart"></i> Hair match</a></li>
-        <li><a href="colaboradores.html"><i class="fas fa-users"></i> Ver fundaciones/equipos</a></li>
-        <li><a href="{% url 'noticias' %}"><i class="fas fa-newspaper"></i> Leer noticias</a></li>
-        <li><a href="{% url 'adoptar' %}"><i class="fas fa-dog"></i> Adoptar una mascota</a></li>
-      </ul>
-    </nav>
+{% block content %}
+<main class="main-content">
+  <h2 class="form-title">Formulario de Adopción</h2>
 
-    <div class="divider"></div>
+  <form id="adopcionForm" class="adoption-form">
+    {% csrf_token %}
 
-    <div class="auth-links">
-      <ul>
-        <li><a href="{% url 'login' %}"><i class="fas fa-user-circle"></i> Iniciar sesión / Regístrate</a></li>
-      </ul>
-    </div>
+    <label for="nombre_completo">Nombre completo:</label>
+    <input type="text" name="nombre_completo" id="nombre_completo" required minlength="5" maxlength="100">
 
-    <div class="sidebar-footer">
-      <ul>
-        <li><a href="#info"><i class="fas fa-info-circle"></i> Sobre Huachitos</a></li>
-        <li><a href="#descarga"><i class="fas fa-download"></i> Descargar App</a></li>
-        <li><a href="#comentarios"><i class="fas fa-comment-alt"></i> Dejar un comentario</a></li>
-        <li><a href="#"><i class="fas fa-moon"></i> Cambiar tema</a></li>
-      </ul>
-    </div>
-  </aside>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required>
 
-  <main class="main-content">
-    <h2 class="form-title">Formulario de Adopción</h2>
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" name="telefono" id="telefono" required pattern="[0-9]{10}" title="Debe tener 10 dígitos numéricos">
 
-    <form id="adopcionForm" class="adoption-form">
-      {% csrf_token %}
+    <label for="id_perro">Mascota a adoptar:</label>
+    <select name="id_perro" id="id_perro" required>
+      <option value="">Selecciona una mascota</option>
+      {% for perro in perros %}
+        <option value="{{ perro.id }}">{{ perro.nombre }}</option>
+      {% endfor %}
+    </select>
 
-      <label for="nombre_completo">Nombre completo:</label>
-      <input type="text" name="nombre_completo" id="nombre_completo" required minlength="5" maxlength="100">
+    <label for="mensaje">Mensaje:</label>
+    <textarea name="mensaje" id="mensaje" required minlength="10" maxlength="500"></textarea>
 
-      <label for="email">Email:</label>
-      <input type="email" name="email" id="email" required>
+    <button type="submit" class="btn-submit">Enviar solicitud</button>
+  </form>
 
-      <label for="telefono">Teléfono:</label>
-      <input type="tel" name="telefono" id="telefono" required pattern="[0-9]{10}" title="Debe tener 10 dígitos numéricos">
-
-      <label for="id_perro">Mascota a adoptar:</label>
-      <select name="id_perro" id="id_perro" required>
-        <option value="">Selecciona una mascota</option>
-        {% for perro in perros %}
-          <option value="{{ perro.id }}">{{ perro.nombre }}</option>
-        {% endfor %}
-      </select>
-
-      <label for="mensaje">Mensaje:</label>
-      <textarea name="mensaje" id="mensaje" required minlength="10" maxlength="500"></textarea>
-
-      <button type="submit" class="btn-submit">Enviar solicitud</button>
-    </form>
-
-    <div id="mensajeExito" class="success-message" style="display:none;">
-      ¡Solicitud enviada correctamente!
-    </div>
-  </main>
-</div>
+  <div id="mensajeExito" class="success-message" style="display:none;">
+    ¡Solicitud enviada correctamente!
+  </div>
+</main>
 
 <script>
 document.getElementById("adopcionForm").addEventListener("submit", async function(e) {
@@ -90,7 +44,6 @@ document.getElementById("adopcionForm").addEventListener("submit", async functio
 
   const form = this;
 
-  // Validaciones básicas JS (por si el navegador las salta)
   const nombre = form.nombre_completo.value.trim();
   const email = form.email.value.trim();
   const telefono = form.telefono.value.trim();
@@ -144,6 +97,4 @@ document.getElementById("adopcionForm").addEventListener("submit", async functio
   }
 });
 </script>
-
-</body>
-</html>
+{% endblock %}
