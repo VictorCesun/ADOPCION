@@ -1,0 +1,69 @@
+{% extends 'adopcion_perros/base.html' %}
+{% load static %}
+
+{% block content %}
+  <section class="collaborators-section">
+    <div class="section-header">
+      <h3>Fundaciones de Adopción</h3>
+    </div>
+
+    <div class="collaborator-cards-container">
+      {# Fundaciones dinámicas desde la base de datos #}
+      {% for centro in fundaciones %}
+        <div class="collaborator-card">
+          {% if centro.logo %}
+            <img src="{{ centro.logo.url }}" alt="{{ centro.nombre }} Logo">
+          {% else %}
+            <img src="{% static 'adopcion_perros/img/logo-placeholder.png' %}" alt="Logo no disponible">
+          {% endif %}
+          <div class="collaborator-info">
+            <h4>{{ centro.nombre }}</h4>
+            <p><strong>Dirección:</strong> {{ centro.direccion }}</p>
+            <p><strong>Teléfono:</strong> {{ centro.telefono }}</p>
+            <p><strong>Correo:</strong> {{ centro.correo }}</p>
+            {% if centro.instagram %}
+              <a href="{{ centro.instagram }}" target="_blank">Visitar Instagram</a>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <p>No hay fundaciones registradas aún. (cambiar esto o lo adyecente)</p>
+      {% endfor %}
+
+
+      {# Fundaciones fijas adicionales #}
+      <div class="collaborator-card">
+        <img src="/static/adopcion_perros/img/logos/1000010482.png" alt="Rescue Me Tijuana AC Logo">
+        <div class="collaborator-info">
+          <h4>Rescue Me Tijuana AC</h4>
+          <p>Posts: 772</p>
+          <p>Seguidores: 7,433</p>
+          <p>Servicios: Rescate, Rehabilitación, Adopción, Tenencia Responsable.</p>
+          <a href="https://www.instagram.com/rescueme.tj?igsh=b2xuZDdqcDU3N2Rk" target="_blank">Visitar</a>
+        </div>
+      </div>
+
+      <div class="collaborator-card">
+        <img src="/static/adopcion_perros/img/logos/1000010484.png" alt="Solitos en la Calle A.C. Logo">
+        <div class="collaborator-info">
+          <h4>SOLITOS EN LA CALLE A.C.</h4>
+          <p>Posts: 216</p>
+          <p>Seguidores: 1,254</p>
+          <p>Servicios: Rescatar, rehabilitar, amar y encontrar hogar a nuestros amigos de cuatro patas.</p>
+          <a href="https://www.instagram.com/solitosenlacalle_ac?igsh=MXF2MjV1N2Q0bWlraw==" target="_blank">Visitar</a>
+        </div>
+      </div>
+
+      <div class="collaborator-card">
+        <img src="/static/adopcion_perros/img/logos/1000010486.png" alt="Voluntarios TJ Logo">
+        <div class="collaborator-info">
+          <h4>Voluntarios TJ</h4>
+          <p>Posts: 857</p>
+          <p>Seguidores: 11.9K</p>
+          <p>Servicios: Voluntariado en control animal.</p>
+          <a href="https://www.instagram.com/voluntariostj?igsh=MWlvZDB0MXJob3ltZA==" target="_blank">Visitar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
