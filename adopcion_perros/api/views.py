@@ -142,4 +142,20 @@ def adopcion_formulario_view(request):
 #Cerrar sesion
 def logout_view(request):
     logout(request)
+<<<<<<< HEAD
     return redirect('login')
+=======
+    return redirect('index')
+
+#Lista perros
+
+def catalogo_view(request):
+    perros = Perro.objects.all()
+    return render(request, 'adopcion_perros/catalogo.html', {'perros': perros})
+
+#fundaciones
+
+def fundaciones_view(request):
+    fundaciones = CentroAdopcion.objects.all()
+    return render(request, 'adopcion_perros/fundaciones.html', {'fundaciones': fundaciones})
+>>>>>>> 28d4efba44b37def7ed8644bb51b5d09682c9fca

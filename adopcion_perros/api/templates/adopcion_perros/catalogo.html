@@ -1,0 +1,27 @@
+{% extends 'adopcion_perros/base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1 style="text-align:center; margin-top: 20px;">🐾 Catálogo de Perros en Adopción 🐾</h1>
+
+  <div class="catalogo-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+    {% for perro in perros %}
+      <div class="card" style="border: 1px solid #ccc; border-radius: 10px; width: 280px; padding: 16px; text-align: center; background-color: #fff; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
+        {% if perro.foto %}
+          <img src="{{ perro.foto.url }}" alt="{{ perro.nombre }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+        {% else %}
+          <img src="{% static 'adopcion_perros/img/Logo.png' %}" alt="Sin foto" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+        {% endif %}
+
+        <h2 style="margin-top: 10px;">{{ perro.nombre }}</h2>
+        <p><strong>Edad:</strong> {{ perro.edad }} años</p>
+        <p><strong>Raza:</strong> {{ perro.raza }}</p>
+        {% if perro.descripcion %}
+          <p style="font-size: 14px; color: #555;">{{ perro.descripcion }}</p>
+        {% endif %}
+        
+        <a href="{% url 'adoptar' %}?perro_id={{ perro.id }}" class="btn btn-primary" style="margin-top: 10px; display: inline-block; background-color: #f97316; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none;">Adoptar</a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

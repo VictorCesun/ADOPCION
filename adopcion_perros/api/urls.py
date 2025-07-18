@@ -35,7 +35,8 @@ urlpatterns = [
     path('news/', news_view, name='news'),
     path('colaborador/', colaborador_view, name='colaborador'),
     path('adoptar/', adopcion_formulario_view, name='adoptar'),
-    path('api/adopciones/', SolicitudAdopcionView.as_view(), name='api_adopciones'),
+    path('catalogo/', views.catalogo_view, name='catalogo'),
+    path('fundaciones/', views.fundaciones_view, name='fundaciones'),
 ]
 
 # Añade las rutas de los ViewSets del router
