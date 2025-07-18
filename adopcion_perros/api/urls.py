@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
+from .views import SolicitudAdopcionView
 from .views import (
     adopcion_formulario_view,
     SolicitudAdopcionView,
@@ -37,6 +38,8 @@ urlpatterns = [
     path('adoptar/', adopcion_formulario_view, name='adoptar'),
     path('catalogo/', views.catalogo_view, name='catalogo'),
     path('fundaciones/', views.fundaciones_view, name='fundaciones'),
+    path('api/adopciones/', SolicitudAdopcionView.as_view(), name='api_adopciones'),
+
 ]
 
 # Añade las rutas de los ViewSets del router
