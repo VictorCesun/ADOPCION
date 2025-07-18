@@ -3,40 +3,44 @@
 
 {% block title %}Formulario de Adopción - Huellitas{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'adopcion_perros/css/estilos_adopcion_mejorado.css' %}">
+{% endblock %}
+
 {% block content %}
-<main class="main-content">
-  <h2 class="form-title">Formulario de Adopción</h2>
+<div class="form-container">
+  <div class="form-box">
+    <div class="form-header">
+      <h2>🐶 Solicitud de Adopción</h2>
+      <p>Completa el formulario para darle un hogar a una mascota</p>
+    </div>
 
-  <form id="adopcionForm" class="adoption-form">
-    {% csrf_token %}
+    <form id="adopcionForm">
+      {% csrf_token %}
 
-    <label for="nombre_completo">Nombre completo:</label>
-    <input type="text" name="nombre_completo" id="nombre_completo" required minlength="5" maxlength="100">
+      <input type="text" name="nombre_completo" placeholder="Nombre completo" required minlength="5" maxlength="100">
 
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" required>
+      <input type="email" name="email" placeholder="Correo electrónico" required>
 
-    <label for="telefono">Teléfono:</label>
-    <input type="tel" name="telefono" id="telefono" required pattern="[0-9]{10}" title="Debe tener 10 dígitos numéricos">
+      <input type="tel" name="telefono" placeholder="Teléfono (10 dígitos)" required pattern="[0-9]{10}" title="Debe tener 10 dígitos numéricos">
 
-    <label for="id_perro">Mascota a adoptar:</label>
-    <select name="id_perro" id="id_perro" required>
-      <option value="">Selecciona una mascota</option>
-      {% for perro in perros %}
-        <option value="{{ perro.id }}">{{ perro.nombre }}</option>
-      {% endfor %}
-    </select>
+      <select name="id_perro" required>
+        <option value="">Selecciona una mascota</option>
+        {% for perro in perros %}
+          <option value="{{ perro.id }}">{{ perro.nombre }}</option>
+        {% endfor %}
+      </select>
 
-    <label for="mensaje">Mensaje:</label>
-    <textarea name="mensaje" id="mensaje" required minlength="10" maxlength="500"></textarea>
+      <textarea name="mensaje" placeholder="Cuéntanos por qué deseas adoptar" required minlength="10" maxlength="500"></textarea>
 
-    <button type="submit" class="btn-submit">Enviar solicitud</button>
-  </form>
+      <button type="submit">Enviar solicitud</button>
+    </form>
 
-  <div id="mensajeExito" class="success-message" style="display:none;">
-    ¡Solicitud enviada correctamente!
+    <div id="mensajeExito" class="success-message" style="display:none;">
+      ¡Solicitud enviada correctamente!
+    </div>
   </div>
-</main>
+</div>
 
 <script>
 document.getElementById("adopcionForm").addEventListener("submit", async function(e) {
@@ -50,30 +54,11 @@ document.getElementById("adopcionForm").addEventListener("submit", async functio
   const mensaje = form.mensaje.value.trim();
   const perro = form.id_perro.value;
 
-  if (nombre.length < 5) {
-    alert("El nombre debe tener al menos 5 caracteres.");
-    return;
-  }
-
-  if (!email.includes("@")) {
-    alert("Ingresa un correo válido.");
-    return;
-  }
-
-  if (!/^\d{10}$/.test(telefono)) {
-    alert("El teléfono debe tener 10 dígitos numéricos.");
-    return;
-  }
-
-  if (!perro) {
-    alert("Debes seleccionar una mascota.");
-    return;
-  }
-
-  if (mensaje.length < 10) {
-    alert("El mensaje debe tener al menos 10 caracteres.");
-    return;
-  }
+  if (nombre.length < 5) return alert("El nombre debe tener al menos 5 caracteres.");
+  if (!email.includes("@")) return alert("Ingresa un correo válido.");
+  if (!/^\d{10}$/.test(telefono)) return alert("El teléfono debe tener 10 dígitos numéricos.");
+  if (!perro) return alert("Debes seleccionar una mascota.");
+  if (mensaje.length < 10) return alert("El mensaje debe tener al menos 10 caracteres.");
 
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());

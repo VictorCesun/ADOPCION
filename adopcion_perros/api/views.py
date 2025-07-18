@@ -41,7 +41,7 @@ def registro_view(request):
 
 
 # -----------------------------
-# ✅ Inicio de sesión
+#  Inicio de sesión
 # -----------------------------
 def login_view(request):
     if request.method == 'POST':
@@ -140,9 +140,6 @@ def adopcion_formulario_view(request):
 
 
 #Cerrar sesion
-
-
-
 def logout_view(request):
     logout(request)
-    return redirect('index')
+    return redirect('login')
