@@ -4,7 +4,7 @@
 {% block title %}Formulario de Adopción - Huellitas{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'adopcion_perros/css/estilos_adopcion_mejorado.css' %}">
+<link rel="stylesheet" href="{% static 'adopcion_perros/css/estilos_formularios_adopcion2.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -17,22 +17,16 @@
 
     <form id="adopcionForm">
       {% csrf_token %}
-
       <input type="text" name="nombre_completo" placeholder="Nombre completo" required minlength="5" maxlength="100">
-
       <input type="email" name="email" placeholder="Correo electrónico" required>
-
       <input type="tel" name="telefono" placeholder="Teléfono (10 dígitos)" required pattern="[0-9]{10}" title="Debe tener 10 dígitos numéricos">
-
       <select name="id_perro" required>
         <option value="">Selecciona una mascota</option>
         {% for perro in perros %}
           <option value="{{ perro.id }}">{{ perro.nombre }}</option>
         {% endfor %}
       </select>
-
       <textarea name="mensaje" placeholder="Cuéntanos por qué deseas adoptar" required minlength="10" maxlength="500"></textarea>
-
       <button type="submit">Enviar solicitud</button>
     </form>
 
@@ -74,7 +68,7 @@ document.getElementById("adopcionForm").addEventListener("submit", async functio
   });
 
   if (response.ok) {
-    alert("¡Solicitud enviada correctamente!");
+    document.getElementById("mensajeExito").style.display = "block";
     form.reset();
   } else {
     const error = await response.json();

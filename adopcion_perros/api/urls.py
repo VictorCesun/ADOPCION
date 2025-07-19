@@ -31,6 +31,7 @@ urlpatterns = [
     path('', index_view, name='index'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),  # 👈 Ruta de cerrar sesión
+    path('api/index/', views.index_view, name='home'),
     path('registro/', registro_view, name='registro'),
     path('noticias/', noticias_view, name='noticias'),
     path('news/', news_view, name='news'),
@@ -39,7 +40,6 @@ urlpatterns = [
     path('catalogo/', views.catalogo_view, name='catalogo'),
     path('fundaciones/', views.fundaciones_view, name='fundaciones'),
     path('api/adopciones/', SolicitudAdopcionView.as_view(), name='api_adopciones'),
-
 ]
 
 # Añade las rutas de los ViewSets del router
